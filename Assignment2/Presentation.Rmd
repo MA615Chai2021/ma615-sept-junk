@@ -1,7 +1,7 @@
 ---
 title: "MA615 Assignment2 Presentation"
 author: "Yongrong Chai"
-date: "10/5/2021"
+date: "10/7/2021"
 output:
 html_document:
     df_print: paged
