@@ -1,0 +1,67 @@
+---
+title: "MA615 Assignment2 Presentation"
+author: "Yongrong Chai"
+date: "10/5/2021"
+output:
+html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, tidy = TRUE, warning = FALSE)
+library(tidyr)
+library(dplyr)
+library(tidyverse)
+```
+
+## **Summary**
+In this report, I want to take a look at what is the relation between the Income per capita of five continents and Population Density in the recent 20 years. The data is extracted from the Gapminder website (www.gapminder.org), and two indicators I choose are income per person(gross domestic product per person adjusted for differences in purchasing power) and population density(average number of people on each square km of the land in the given country)
+
+```{r echo=FALSE}
+source(file = "wrangling_code.R")
+```
+
+```{r echo=FALSE}
+#I wanna analyze the data by continents 
+continent = read.table("continents.txt", header = TRUE, col.names = c('country', 'continent'))
+data.plot = merge(data.new, continent, by = "country")
+
+#converting the yeas and values as numeric factors
+data.plot$year <- as.numeric(data.plot$year)                 
+data.plot$value <- as.numeric(data.plot$value)             
+
+#Two subsets for plots
+data2 <- data.plot[data.plot$year %in% c(2001:2020),]
+data2.1 <- filter(data2, id == "IncomePerPerson")
+data2.2 <- filter(data2, id == "PopulationDensity")
+
+cb_palette = c("#f4b6c2", "#6497b1", "#edc951", "#8874a3", "#4a91f2", "#ffffff")
+```
+
+```{r echo=FALSE}
+source(file = "visualization_function.R")
+```
+
+## **Summary-Income per capita by continents from 2001 to 2021**
+```{r echo=FALSE}
+plot2.1(data2.1)
+```
+
+As we can see from Figure 1, from 2001-2021, the income per capita of Europe which is represented by a purple line is greatly ahead of other continents both in yearly growth rate and overall level. Slopes of Asia, Americas, Oceania are similar suggesting similar annual Income per capita growth rates. Africa's Income per capita which is represented by a pink line is the least developed and the slowest growing.
+
+## **Summary-Population Density by continents from 2000 to 2021**
+```{r echo=FALSE}
+plot2.2(data2.2)
+```
+
+Let’s look at Figure 2 about population density. There are two lines that represent Oceania and Americas overlapping each other, and it shows that the population density of the two continents is about the same. The population density in Africa and Asia is increasing every year while the growth trend is almost flat in the remaining three continents.
+
+
+## **Conclusion**
+1. **Growth Rate of Income per capita ** Europe > Asia > Americas > Oceania > Africa  
+   **Overall Income per capita ** Europe > Asia > Americas > Oceania > Africa    
+2. **Growth Rate of Population Density ** Africa > Asia > Americas > Oceania > Europe  
+   **Overall Population Density ** Asia > Europe > Americas > Oceania > Africa  
+   
+Compared with overall Income per capita and overall Population Density, continents are ranked in a similar order(Europe and Asia switch). However, there is no relationship between the growth rate of income per capita and the growth rate of Population Density. Africa has the highest growth rate of Population Density but the lowest growth rate of Income per capita, and Europe has the lowest growth rate of Population Density but the highest growth rate of income per capita.
+
