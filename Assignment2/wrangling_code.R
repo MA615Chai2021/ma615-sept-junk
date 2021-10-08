@@ -1,8 +1,7 @@
-library(tidyr)
 
 #Import the Data
 IncomePerPerson = read.csv("income_per_person_gdppercapita_ppp_inflation_adjusted.csv", header=T, check.names = FALSE)
-PopulationDensity = read.csv("/Users/karidachai/Desktop/ma615 hw2/population_density_per_square_km.csv", header=T, check.names = FALSE)
+PopulationDensity = read.csv("population_density_per_square_km.csv", header=T, check.names = FALSE)
 
 
 #In order to change the unit of the data and omit "k" later, I make them be characteristic factor
