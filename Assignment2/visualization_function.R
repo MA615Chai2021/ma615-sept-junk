@@ -26,3 +26,11 @@ plot2.2 <- function(df_2){
   
   return(plot.population)
 }
+
+
+###########comment line######
+#This visualization function is pretty good! I can clearly see the comparisons that yongrong want to do from the plot2.1 and plot 2.2. And the code is very concise and organized.
+#The only suggestion is in the plots, the scatter points are too much, maybe it is better to use average value of each continent.
+#It is just a suggestion, because using average points is good to look, but ignore the deviation of values, so it is a trade-off.
+#I have to say, yongrong's code is so good, I will also learn from her code about how to write code concisely.
+#############################
